@@ -2,13 +2,43 @@ const { v4: uuidv4 } = require('uuid');
 
 let ModalidadBR = [
     {
-        modalidad:"Batalla de Robots"
+        modalidad:"Batalla de Robots",
+        catagorias: [
+            {
+                id: "1",
+                nombre: "Modalidad sumo"
+            },
+            {
+                id: "2",
+                nombre: "Modalidad incapacidad"
+            }
+        ]
     },
     {
-        modalidad:"Vehiculos Autonomos"
+        modalidad:"Vehiculos Autonomos",
+        catagorias: [
+            {
+                id: "3",
+                nombre: "Recoleccion de objetos"
+            },
+            {
+                id: "4",
+                nombre: "Seguidor de linea"
+            }
+        ]
     },
     {
-        modalidad:"Soluciones Industriales"
+        modalidad:"Soluciones Industriales",
+        catagorias: [
+            {
+                id: "5",
+                nombre: "El objetivo"
+            },
+            {
+                id: "6",
+                nombre: "El Problema"
+            }
+        ]
     }
 
 ]

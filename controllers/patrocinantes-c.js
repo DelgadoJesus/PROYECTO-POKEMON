@@ -1,13 +1,15 @@
 var PatrocinantesModels = require('../models/patrocinantes-m');
 
 class PatrocinantesController{
-    mostrarPatrocinantes(){
-        return PatrocinantesModels.todos(); 
+    Patrocinantes(){
+        return PatrocinantesModels.mostrarPatrocinantes(); 
     }
-    patrocinantesID(){
-
+    patrocinantesID(id){
+        return PatrocinantesModels.ObtenerPatrocinante(id);
     }
-    ingresarPatrocinantes(){
-        
+    ingresarPatrocinantes(patrocinante){
+        return PatrocinantesModels.ingresarPatrocinantes(patrocinante);
     }
 }
+
+module.exports = new PatrocinantesController();

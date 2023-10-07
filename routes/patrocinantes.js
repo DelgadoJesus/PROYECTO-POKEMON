@@ -4,13 +4,20 @@ var PatrocinantesController = require('../controllers/patrocinantes-c')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.send(PatrocinantesController.todos());
+    res.send(PatrocinantesController.Patrocinantes());
 });
+
+router.get('/:id', function(req, res, next) {
+    let id = req.params.id;
+    res.send(PatrocinantesController.patrocinantesID(id));
+  });
+
+
 
 /*POST Ingresar*/
 router.post('/', function(req, res, next) {
-    PatrocinantesControllerController.crear(req.body)
-    res.send(PatrocinantesControllerController.todos());
+    PatrocinantesController.ingresarPatrocinantes(req.body)
+    res.send(PatrocinantesController.Patrocinantes());
 });
 
 
