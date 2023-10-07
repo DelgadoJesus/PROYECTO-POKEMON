@@ -31,8 +31,8 @@ class UsuariosModels {
         usuario.id = uuidv4();
         usuarioDB.push(usuario)
     }
-    modificar(id){
-        
+    modificar(id, nombre){
+       console.log(id, nombre)
     }
     eliminar(id){
         

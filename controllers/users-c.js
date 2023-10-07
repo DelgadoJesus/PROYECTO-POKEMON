@@ -10,8 +10,8 @@ class UsuariosController {
     crear(usuario){
         UsuariosModels.crear(usuario)
     }
-    modificar(id){
-        
+    modificar(id, nombre){
+        return UsuariosModels.modificar(id, nombre)
     }
     eliminar(id){
         
