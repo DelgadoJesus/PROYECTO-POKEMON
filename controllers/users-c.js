@@ -5,16 +5,16 @@ class UsuariosController {
         return UsuariosModels.todos()
     }
     uno(id){
-
+        return UsuariosModels.buscarUsuarioPorId(id)
     }
     crear(usuario){
         UsuariosModels.crear(usuario)
     }
-    modificar(id, nombre){
-        return UsuariosModels.modificar(id, nombre)
+    modificar(id, nuevoNombre){
+        return UsuariosModels.modificar(id, nuevoNombre)
     }
     eliminar(id){
-        
+        return UsuariosModels.eliminar(id)
     }
 }
 

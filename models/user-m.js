@@ -24,18 +24,26 @@ class UsuariosModels {
         console.log("models/todos")
         return usuarioDB;
     }
-    uno(id){
-
+    buscarUsuarioPorId(id){
+        const usuarioEncontrado = usuarioDB.find(usuario => usuario.id === id);
+            return usuarioEncontrado
     }
+
     crear(usuario){
         usuario.id = uuidv4();
         usuarioDB.push(usuario)
     }
-    modificar(id, nombre){
-       console.log(id, nombre)
-    }
-    eliminar(id){
-        
+
+    modificar(id, nuevoNombre) {    
+        const usuario = usuarioDB.find(usuario => usuario.id === id); 
+        if (usuario) {
+        usuario.nombre = nuevoNombre; 
+        return usuarioDB; 
+    }}
+
+    eliminar(id) {
+        const usuarioEliminado = usuarioDB.filter(usuario => usuario.id !== id);
+        return usuarioEliminado;
     }
 }
 

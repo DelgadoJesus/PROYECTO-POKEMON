@@ -4,7 +4,12 @@ var UsuariosController = require('../controllers/users-c')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send(UsuariosController.todos());
+    res.send(UsuariosController.todos());
+});
+
+router.get('/:id', function(req, res, next) {
+  let id = req.params.id;
+  res.send(UsuariosController.uno(id));
 });
 
 
@@ -15,16 +20,15 @@ router.post('/', function(req, res, next) {
 });
 
 /*PUT modificar*/
-router.put('/user/:id', function(req, res, next) {
-  res.status(200).send(_.pick(user, ['id', 'nombre']));
-  res.send(UsuariosController.modificar(id, nombre))
+router.put('/:id', function(req, res, next) {
+  res.send(UsuariosController.modificar(req.params.id, req.body.nombre))
 });
 
-// /*DELETE eliminar*/
-// router.get('/', function(req, res, next) {
-//   UsuariosController.crear(req.body)
-//   res.send(UsuariosController.());
-// });
+/*DELETE eliminar*/
+router.delete('/:id', function(req, res, next) {
+  res.send(UsuariosController.eliminar(req.params.id))
+});
+
 
 
 module.exports = router;
