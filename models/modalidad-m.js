@@ -2,6 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 
 let ModalidadBR = [
     {
+        id : "M1",
         modalidad:"Batalla de Robots",
         catagorias: [
             {
@@ -15,6 +16,7 @@ let ModalidadBR = [
         ]
     },
     {
+        id: "M2",
         modalidad:"Vehiculos Autonomos",
         catagorias: [
             {
@@ -28,6 +30,7 @@ let ModalidadBR = [
         ]
     },
     {
+        id:"M3",
         modalidad:"Soluciones Industriales",
         catagorias: [
             {
@@ -49,12 +52,12 @@ class ModalidadModels {
         return ModalidadBR;
     }
     uno(id){
-
+        const modalidadEncontrada = ModalidadBR.find(mod => mod.id === id);
+        return modalidadEncontrada;
     }
-    crear(modo){
-        modo.id = uuidv4();
-        ModalidadBR.push(modo)
-   
+    crear(mod){
+        mod.id = uuidv4();
+        ModalidadBR.push(mod)
     }
 }
 

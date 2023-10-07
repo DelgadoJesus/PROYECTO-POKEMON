@@ -4,10 +4,11 @@ class ModalidadControllers {
     todos(){
         return modalidadModels.todos();
     }
-    uno(id){
-
+    obtenerModalidad(id){
+       return modalidadModels.uno(id);
     }
-    crear(modo){
+    crear(mod){
+        modalidadModels.crear(mod)
 
     }
 }
