@@ -10,6 +10,9 @@ class ModalidadControllers {
     crear(mod){
         modalidadModels.crear(mod)
     }
+    modificar(idModalidad, idCategoria, nuevoNombre){
+        return modalidadModels.modificarCategoria(idModalidad, idCategoria, nuevoNombre);
+    }
     categoria(idModalidad, nuevaCategoria) {
         return modalidadModels.agregarCategoria(idModalidad, nuevaCategoria);
     }

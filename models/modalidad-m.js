@@ -66,6 +66,18 @@ class ModalidadModels {
         return ModalidadBR;
     }
 
+    modificarCategoria(idModalidad, idCategoria, nuevoNombre) {
+        const modalidad = ModalidadBR.find(mod => mod.id === idModalidad);
+        if (modalidad) {
+            const categoria = modalidad.catagorias.find(cat => cat.id === idCategoria);
+            if (categoria) {
+                categoria.nombre = nuevoNombre;
+                return ModalidadBR;
+            }
+        }
+        return null; // En caso de no encontrar la modalidad o la categoría
+    }
+
     agregarCategoria(idModalidad, nuevaCategoria) {
         const modalidad = ModalidadBR.find(mod => mod.id === idModalidad);
         if (modalidad) {

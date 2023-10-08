@@ -25,6 +25,12 @@ router.post('/:id', (req, res) => {
   res.send(ModalidadControllers.categoria(req.params.id, nuevaCategoria));
 });
 
+/*Modificar*/
+router.put('/:idModalidad/:idCategoria', (req, res) => {
+  const nuevoNombre = req.body.nombre;
+  res.send(ModalidadControllers.modificar(req.params.idModalidad, req.params.idCategoria, nuevoNombre));
+});
+
 
 /*DELETE*/
 router.delete('/:idModalidad/:idCategoria', (req, res) => {
