@@ -1,8 +1,9 @@
 const { v4: uuidv4 } = require('uuid');
 
+
 let ModalidadBR = [
     {
-        id : "M1",
+        id : "011",
         modalidad:"Batalla de Robots",
         catagorias: [
             {
@@ -16,7 +17,7 @@ let ModalidadBR = [
         ]
     },
     {
-        id: "M2",
+        id: "012",
         modalidad:"Vehiculos Autonomos",
         catagorias: [
             {
@@ -30,7 +31,7 @@ let ModalidadBR = [
         ]
     },
     {
-        id:"M3",
+        id:"013",
         modalidad:"Soluciones Industriales",
         catagorias: [
             {
@@ -55,10 +56,34 @@ class ModalidadModels {
         const modalidadEncontrada = ModalidadBR.find(mod => mod.id === id);
         return modalidadEncontrada;
     }
-    crear(mod){
+    crear(mod, cat){
         mod.id = uuidv4();
         ModalidadBR.push(mod)
+        modalidadBR.catagorias.push(cat)
     }
+    agregarCategoria(idModalidad, nuevaCategoria) {
+        const modalidad = ModalidadBR.find(mod => mod.id === idModalidad);
+        if (modalidad) {
+          const nuevaCat = {
+            id: uuidv4(),
+            nombre: nuevaCategoria
+          };
+          modalidad.catagorias.push(nuevaCat);
+          return modalidad;
+        }
+        return null; // En caso de no encontrar la modalidad
+      }
+
+      eliminarCategoria(idModalidad, idCategoria) {
+        const modalidad = ModalidadBR.find(mod => mod.id === idModalidad);
+        if (modalidad) {
+          const categoriaIndex = modalidad.catagorias.findIndex(cat => cat.id === idCategoria);
+          if (categoriaIndex !== -1) {
+            modalidad.catagorias.splice(categoriaIndex, 1);
+          }
+        }
+        return ModalidadBR;
+      }        
 }
 
 module.exports = new ModalidadModels();

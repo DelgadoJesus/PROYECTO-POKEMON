@@ -9,23 +9,19 @@ router.get('/', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
   let id = req.params.id;
-  res.send(ModalidadControllers.uno(id));
+  res.send(ModalidadControllers.obtenerModalidad(id));
 });
 
-/*POST agregar*/
-router.post('/', function(req, res, next) {
-  ModalidadControllers.crear(req.body)
-  res.send(ModalidadControllers.todos());
+// /*POST agregar*/
+router.post('/:id', (req, res) => {
+  const nuevaCategoria = req.body.nombre;
+  res.send(ModalidadControllers.categoria(req.params.id, nuevaCategoria));
 });
 
-/*PUT agregar*/
-router.put('/:id', function(req, res, next) {
-  res.send(UsuariosController.modificar(req.params.id, req.body.nombre))
-});
 
 /*DELETE*/
-router.delete('/:id', function(req, res, next) {
-  res.send(UsuariosController.eliminar(req.params.id))
+router.delete('/:idModalidad/:idCategoria', (req, res) => {
+  res.send(ModalidadControllers.quitarcategoria(req.params.idModalidad, req.params.idCategoria));
 });
 
 

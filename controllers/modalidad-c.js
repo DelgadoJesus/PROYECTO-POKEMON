@@ -11,6 +11,13 @@ class ModalidadControllers {
         modalidadModels.crear(mod)
 
     }
+    categoria(idModalidad, nuevaCategoria) {
+        return modalidadModels.agregarCategoria(idModalidad, nuevaCategoria);
+    }
+
+    quitarcategoria(idModalidad, idCategoria){
+        return modalidadModels.eliminarCategoria(idModalidad, idCategoria);
+    }
 }
 
 module.exports = new ModalidadControllers();
