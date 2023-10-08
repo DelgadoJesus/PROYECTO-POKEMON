@@ -9,7 +9,6 @@ class ModalidadControllers {
     }
     crear(mod){
         modalidadModels.crear(mod)
-
     }
     categoria(idModalidad, nuevaCategoria) {
         return modalidadModels.agregarCategoria(idModalidad, nuevaCategoria);

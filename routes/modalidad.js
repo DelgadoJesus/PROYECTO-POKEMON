@@ -13,6 +13,13 @@ router.get('/:id', function(req, res, next) {
 });
 
 // /*POST agregar*/
+
+router.post('/', function(req, res, next) {
+  ModalidadControllers.crear(req.body.Modalidad)
+  res.send(ModalidadControllers.todos());
+});
+
+
 router.post('/:id', (req, res) => {
   const nuevaCategoria = req.body.nombre;
   res.send(ModalidadControllers.categoria(req.params.id, nuevaCategoria));

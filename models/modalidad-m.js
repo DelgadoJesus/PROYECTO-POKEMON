@@ -56,11 +56,16 @@ class ModalidadModels {
         const modalidadEncontrada = ModalidadBR.find(mod => mod.id === id);
         return modalidadEncontrada;
     }
-    crear(mod, cat){
-        mod.id = uuidv4();
-        ModalidadBR.push(mod)
-        modalidadBR.catagorias.push(cat)
+    
+    crear(mod){
+        ModalidadBR.push({
+            id: uuidv4(),
+            Modalidad: mod,
+            catagorias: [] 
+        })
+        return ModalidadBR;
     }
+
     agregarCategoria(idModalidad, nuevaCategoria) {
         const modalidad = ModalidadBR.find(mod => mod.id === idModalidad);
         if (modalidad) {
