@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var equiposControllers = require('../controllers/users-c')
+var equiposControllers = require('../controllers/equipos-c')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

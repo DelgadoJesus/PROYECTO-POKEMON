@@ -1,4 +1,4 @@
-var equiposModels = require('../models/user-m')
+var equiposModels = require('../models/equipos-m')
 
 class equiposControllers {
     todos(){
