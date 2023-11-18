@@ -40,15 +40,15 @@ let patrocinanteDB = [
 ]
 
 class PatrocinantesModels {
-    mostrarPatrocinantes(){
+    async mostrarPatrocinantes(){
         console.log('models/todos')
-        return patrocinanteDB;
+        return await patrocinanteDB;
     }
-    ObtenerPatrocinante(id){
+    async ObtenerPatrocinante(id){
         const patrocinioEncontrado = patrocinanteDB.find(patrocinante => patrocinante.id === id); 
-        return patrocinioEncontrado;
+        return await patrocinioEncontrado;
     }
-    ingresarPatrocinantes(patrocinante){
+    async ingresarPatrocinantes(patrocinante){
         patrocinante.id = uuidv4();
         patrocinanteDB.push(patrocinante)
     }

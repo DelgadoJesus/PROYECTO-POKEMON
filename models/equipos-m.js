@@ -24,16 +24,16 @@ let equiposDB = [
 ]
 
 class equiposModels {
-    todos(){
+    async todos(){
         console.log("models/todos")
-        return equiposDB;
+        return await equiposDB;
     }
-    buscarEquipoPorId(id){
+    async buscarEquipoPorId(id){
         const equiposEncontrados = equiposDB.find(equipos => equipos.id === id);
-            return equiposEncontrados
+            return await equiposEncontrados
     }
 
-    crear(equipo, cat){
+    async crear(equipo, cat){
         equiposDB.push({ 
             id:uuidv4(),
             nombre: equipo,
@@ -41,16 +41,16 @@ class equiposModels {
         })
     }
 
-    modificar(id, nuevoNombre) {    
+    async modificar(id, nuevoNombre) {    
         const equipos = equiposDB.find(equipos => equipos.id === id); 
         if (equipos) {
         equipos.nombre = nuevoNombre; 
-        return equiposDB; 
+        return await equiposDB; 
     }}
 
-    eliminar(id) {
+    async eliminar(id) {
         const equiposEliminado = equiposDB.filter(equipos => equipos.id !== id);
-        return equiposEliminado;
+        return await equiposEliminado;
     }
 }
 

@@ -48,37 +48,37 @@ let ModalidadBR = [
 ]
 
 class ModalidadModels {
-    todos(){
+    async todos(){
         console.log("models/todos")
-        return ModalidadBR;
+        return await ModalidadBR;
     }
-    uno(id){
+    async uno(id){
         const modalidadEncontrada = ModalidadBR.find(mod => mod.id === id);
-        return modalidadEncontrada;
+        return await modalidadEncontrada;
     }
     
-    crear(mod){
+    async crear(mod){
         ModalidadBR.push({
             id: uuidv4(),
             Modalidad: mod,
             catagorias: [] 
         })
-        return ModalidadBR;
+        return await ModalidadBR;
     }
 
-    modificarCategoria(idModalidad, idCategoria, nuevoNombre) {
+    async modificarCategoria(idModalidad, idCategoria, nuevoNombre) {
         const modalidad = ModalidadBR.find(mod => mod.id === idModalidad);
         if (modalidad) {
             const categoria = modalidad.catagorias.find(cat => cat.id === idCategoria);
             if (categoria) {
                 categoria.nombre = nuevoNombre;
-                return ModalidadBR;
+                return await ModalidadBR;
             }
         }
         return null; // En caso de no encontrar la modalidad o la categoría
     }
 
-    agregarCategoria(idModalidad, nuevaCategoria) {
+    async agregarCategoria(idModalidad, nuevaCategoria) {
         const modalidad = ModalidadBR.find(mod => mod.id === idModalidad);
         if (modalidad) {
           const nuevaCat = {
@@ -86,12 +86,12 @@ class ModalidadModels {
             nombre: nuevaCategoria
           };
           modalidad.catagorias.push(nuevaCat);
-          return modalidad;
+          return await modalidad;
         }
         return null; // En caso de no encontrar la modalidad
       }
 
-      eliminarCategoria(idModalidad, idCategoria) {
+      async eliminarCategoria(idModalidad, idCategoria) {
         const modalidad = ModalidadBR.find(mod => mod.id === idModalidad);
         if (modalidad) {
           const categoriaIndex = modalidad.catagorias.findIndex(cat => cat.id === idCategoria);
@@ -99,7 +99,7 @@ class ModalidadModels {
             modalidad.catagorias.splice(categoriaIndex, 1);
           }
         }
-        return ModalidadBR;
+        return await ModalidadBR;
       }        
 }
 

@@ -20,21 +20,21 @@ router.post('/', async function(req, res, next) {
 });
 
 
-router.post('/:id', async (req, res) => {
+router.post('/:id', (req, res) => {
   const nuevaCategoria = req.body.nombre;
-  res.send(await ModalidadControllers.categoria(req.params.id, nuevaCategoria));
+  res.send(ModalidadControllers.categoria(req.params.id, nuevaCategoria));
 });
 
 /*Modificar*/
-router.put('/:idModalidad/:idCategoria', async (req, res) => {
+router.put('/:idModalidad/:idCategoria', (req, res) => {
   const nuevoNombre = req.body.nombre;
-  res.send(await ModalidadControllers.modificar(req.params.idModalidad, req.params.idCategoria, nuevoNombre));
+  res.send(ModalidadControllers.modificar(req.params.idModalidad, req.params.idCategoria, nuevoNombre));
 });
 
 
 /*DELETE*/
-router.delete('/:idModalidad/:idCategoria', async (req, res) => {
-  res.send(await ModalidadControllers.quitarcategoria(req.params.idModalidad, req.params.idCategoria));
+router.delete('/:idModalidad/:idCategoria',(req, res) => {
+  res.send(ModalidadControllers.quitarcategoria(req.params.idModalidad, req.params.idCategoria));
 });
 
 
