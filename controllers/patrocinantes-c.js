@@ -1,14 +1,14 @@
 var PatrocinantesModels = require('../models/patrocinantes-m');
 
 class PatrocinantesController{
-    Patrocinantes(){
-        return PatrocinantesModels.mostrarPatrocinantes(); 
+    async Patrocinantes(){
+        return await PatrocinantesModels.mostrarPatrocinantes(); 
     }
-    patrocinantesID(id){
-        return PatrocinantesModels.ObtenerPatrocinante(id);
+    async patrocinantesID(id){
+        return await PatrocinantesModels.ObtenerPatrocinante(id);
     }
-    ingresarPatrocinantes(patrocinante){
-        return PatrocinantesModels.ingresarPatrocinantes(patrocinante);
+    async ingresarPatrocinantes(patrocinante){
+        return await PatrocinantesModels.ingresarPatrocinantes(patrocinante);
     }
 }
 
