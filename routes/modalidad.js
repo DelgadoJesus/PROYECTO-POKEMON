@@ -3,38 +3,38 @@ var router = express.Router();
 var ModalidadControllers = require('../controllers/modalidad-c')
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send(ModalidadControllers.todos());
+router.get('/', async function(req, res, next) {
+  res.send(await ModalidadControllers.todos());
 });
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', async function(req, res, next) {
   let id = req.params.id;
-  res.send(ModalidadControllers.obtenerModalidad(id));
+  res.send(await ModalidadControllers.obtenerModalidad(id));
 });
 
 // /*POST agregar*/
 
-router.post('/', function(req, res, next) {
+router.post('/', async function(req, res, next) {
   ModalidadControllers.crear(req.body.Modalidad)
-  res.send(ModalidadControllers.todos());
+  res.send(await ModalidadControllers.todos());
 });
 
 
-router.post('/:id', (req, res) => {
+router.post('/:id', async (req, res) => {
   const nuevaCategoria = req.body.nombre;
-  res.send(ModalidadControllers.categoria(req.params.id, nuevaCategoria));
+  res.send(await ModalidadControllers.categoria(req.params.id, nuevaCategoria));
 });
 
 /*Modificar*/
-router.put('/:idModalidad/:idCategoria', (req, res) => {
+router.put('/:idModalidad/:idCategoria', async (req, res) => {
   const nuevoNombre = req.body.nombre;
-  res.send(ModalidadControllers.modificar(req.params.idModalidad, req.params.idCategoria, nuevoNombre));
+  res.send(await ModalidadControllers.modificar(req.params.idModalidad, req.params.idCategoria, nuevoNombre));
 });
 
 
 /*DELETE*/
-router.delete('/:idModalidad/:idCategoria', (req, res) => {
-  res.send(ModalidadControllers.quitarcategoria(req.params.idModalidad, req.params.idCategoria));
+router.delete('/:idModalidad/:idCategoria', async (req, res) => {
+  res.send(await ModalidadControllers.quitarcategoria(req.params.idModalidad, req.params.idCategoria));
 });
 
 
