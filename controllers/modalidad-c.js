@@ -10,15 +10,15 @@ class ModalidadControllers {
     crear(mod){
         modalidadModels.crear(mod)
     }
-    async modificar(idModalidad, idCategoria, nuevoNombre){
-        return await modalidadModels.modificarCategoria(idModalidad, idCategoria, nuevoNombre);
+    modificar(idModalidad,nuevoNombre,cat){
+        return  modalidadModels.modificarModalidad(idModalidad, nuevoNombre,cat);
     }
     async categoria(idModalidad, nuevaCategoria) {
         return await modalidadModels.agregarCategoria(idModalidad, nuevaCategoria);
     }
 
-    async quitarcategoria(idModalidad, idCategoria){
-        return await modalidadModels.eliminarCategoria(idModalidad, idCategoria);
+    quitarcategoria(idModalidad){
+        return modalidadModels.eliminarCategoria(idModalidad);
     }
 }
 

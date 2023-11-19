@@ -16,11 +16,18 @@ class equiposModels {
          ));
 
     }
-    async buscarEquipoPorId(id){
-        const equiposEncontrados = equiposDB.find(equipos => equipos.id === id);
-            return await equiposEncontrados
-    }
+    buscarEquipoPorId(id){
+        return new Promise ((resolve, reject) =>(
 
+            db.query('SELECT * FROM equiposdb WHERE id = ?', id , function (error, results, fields) {
+                if (error) reject(error) ;
+                resolve(results);
+            })
+    
+        ));
+
+    }
+    
     crear(equipo, cat){
 
         return new Promise ((resolve, reject) =>(
@@ -35,17 +42,31 @@ class equiposModels {
     }
 
 
-    async modificar(id, nuevoNombre) {    
-        const equipos = equiposDB.find(equipos => equipos.id === id); 
-        if (equipos) {
-        equipos.nombre = nuevoNombre; 
-        return await equiposDB; 
-    }}
-
-    async eliminar(id) {
-        const equiposEliminado = equiposDB.filter(equipos => equipos.id !== id);
-        return await equiposEliminado;
+    modificar(id, nuevoNombre, cat) {    
+        return new Promise((resolve, reject) => {
+            db.query('UPDATE equiposdb SET nombre = ? , categoria = ? WHERE id = ?', [nuevoNombre, cat,id], function (error, results, fields) {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve();
+                }
+            });
+        });
     }
-}
+
+    eliminar(id) {
+        const queryString = 'DELETE FROM equiposdb WHERE id = ?';
+        return new Promise((resolve, reject) => {
+            db.query(queryString, [id], (error, results, fields) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
+    }
+  }
+
 
 module.exports = new equiposModels();

@@ -19,7 +19,8 @@ router.post('/', function(req, res, next) {
   //res.send(await ModalidadControllers.todos());
  ModalidadControllers.crear(req.body).then(()=>{
      console.log("then create")
-     ModalidadControllers.todos().then((resultados)=>{
+     ModalidadControllers.todos()
+     .then((resultados)=>{
         console.log("then todos");
         res.send(resultados)
       })
@@ -33,16 +34,17 @@ router.post('/:id', (req, res) => {
 });
 
 /*Modificar*/
-router.put('/:idModalidad/:idCategoria', (req, res) => {
-  const nuevoNombre = req.body.nombre;
-  res.send(ModalidadControllers.modificar(req.params.idModalidad, req.params.idCategoria, nuevoNombre));
+router.put('/:idModalidad', (req, res) => {
+  const nuevoNombre = req.body.modalidad;
+  res.send(ModalidadControllers.modificar(req.params.idModalidad, nuevoNombre));
 });
 
 
 /*DELETE*/
-router.delete('/:idModalidad/:idCategoria',(req, res) => {
-  res.send(ModalidadControllers.quitarcategoria(req.params.idModalidad, req.params.idCategoria));
+router.delete('/:idModalidad',(req, res) => {
+  res.send(ModalidadControllers.quitarcategoria(req.params.idModalidad));
 });
+
 
 
 module.exports = router;

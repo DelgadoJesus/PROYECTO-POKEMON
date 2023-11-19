@@ -28,13 +28,15 @@ router.post('/', function(req, res, next) {
 });
 
 /*PUT modificar*/
-router.put('/:id', async function(req, res, next) {
-  res.send(await equiposControllers.modificar(req.params.id, req.body.nombre))
+router.put('/:id', (req, res) => {
+  const nuevoNombre = req.body.nombre;
+  const nuevaCat = req.body.categoria;
+  res.send(equiposControllers.modificar(req.params.id, nuevoNombre, nuevaCat));
 });
 
 /*DELETE eliminar*/
-router.delete('/:id/', async function(req, res, next) {
-  res.send(await equiposControllers.eliminar(req.params.id))
+router.delete('/:id/',function(req, res, next) {
+  res.send(equiposControllers.eliminar(req.params.id))
 });
 
 

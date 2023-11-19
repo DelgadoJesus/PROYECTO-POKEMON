@@ -10,11 +10,11 @@ class equiposControllers {
     crear(equipo, cat){
      equiposModels.crear(equipo, cat)
     }
-    async modificar(id, nuevoNombre){
-        return await equiposModels.modificar(id, nuevoNombre)
+    modificar(id, nuevoNombre, cat){
+        return equiposModels.modificar(id, nuevoNombre, cat)
     }
-    async eliminar(id){
-        return await equiposModels.eliminar(id)
+    eliminar(id){
+        return equiposModels.eliminar(id)
     }
 }
 

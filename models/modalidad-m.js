@@ -21,8 +21,15 @@ class ModalidadModels {
 
 
     async uno(id){
-        const modalidadEncontrada = ModalidadBR.find(mod => mod.id === id);
-        return await modalidadEncontrada;
+        return new Promise ((resolve, reject) =>(
+
+            db.query('SELECT * FROM modalidad WHERE id = ?', id , function (error, results, fields) {
+                if (error) reject(error) ;
+                resolve(results);
+            })
+    
+        ));
+
     }
     
     crear(mod){
@@ -31,25 +38,25 @@ class ModalidadModels {
 
             db.query('INSERT INTO modalidad SET ?', mod, function (error, results, fields) {
                 if (error) reject(error) ;
-                resolve();
+                resolve(results);
             })
     
         ));
 
     }
 
-    async modificarCategoria(idModalidad, idCategoria, nuevoNombre) {
-        const modalidad = ModalidadBR.find(mod => mod.id === idModalidad);
-        if (modalidad) {
-            const categoria = modalidad.catagorias.find(cat => cat.id === idCategoria);
-            if (categoria) {
-                categoria.nombre = nuevoNombre;
-                return await ModalidadBR;
-            }
-        }
-        return null; // En caso de no encontrar la modalidad o la categoría
+    modificarModalidad(idModalidad, nuevoNombre) {
+        return new Promise((resolve, reject) => {
+            db.query('UPDATE modalidad SET modalidad = ? WHERE id = ?', [nuevoNombre, idModalidad], function (error, results, fields) {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve();
+                }
+            });
+        });
     }
-
+    
     async agregarCategoria(idModalidad, nuevaCategoria) {
         const modalidad = ModalidadBR.find(mod => mod.id === idModalidad);
         if (modalidad) {
@@ -63,16 +70,18 @@ class ModalidadModels {
         return null; // En caso de no encontrar la modalidad
       }
 
-      async eliminarCategoria(idModalidad, idCategoria) {
-        const modalidad = ModalidadBR.find(mod => mod.id === idModalidad);
-        if (modalidad) {
-          const categoriaIndex = modalidad.catagorias.findIndex(cat => cat.id === idCategoria);
-          if (categoriaIndex !== -1) {
-            modalidad.catagorias.splice(categoriaIndex, 1);
-          }
-        }
-        return await ModalidadBR;
-      }        
+      eliminarCategoria(idModalidad) {
+        const queryString = 'DELETE FROM modalidad WHERE id = ?';
+        return new Promise((resolve, reject) => {
+            db.query(queryString, [idModalidad], (error, results, fields) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
+    }
 }
 
 module.exports = new ModalidadModels();
