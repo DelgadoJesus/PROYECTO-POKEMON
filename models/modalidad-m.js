@@ -1,69 +1,41 @@
 const { v4: uuidv4 } = require('uuid');
+const db = require("../db");
 
-
-let ModalidadBR = [
-    {
-        id : "011",
-        modalidad:"Batalla de Robots",
-        catagorias: [
-            {
-                id: "1",
-                nombre: "Modalidad sumo"
-            },
-            {
-                id: "2",
-                nombre: "Modalidad incapacidad"
-            }
-        ]
-    },
-    {
-        id: "012",
-        modalidad:"Vehiculos Autonomos",
-        catagorias: [
-            {
-                id: "3",
-                nombre: "Recoleccion de objetos"
-            },
-            {
-                id: "4",
-                nombre: "Seguidor de linea"
-            }
-        ]
-    },
-    {
-        id:"013",
-        modalidad:"Soluciones Industriales",
-        catagorias: [
-            {
-                id: "5",
-                nombre: "El objetivo"
-            },
-            {
-                id: "6",
-                nombre: "El Problema"
-            }
-        ]
-    }
-
-]
 
 class ModalidadModels {
-    async todos(){
+    todos(){
         console.log("models/todos")
-        return await ModalidadBR;
+
+        return new Promise ((resolve, reject) =>(
+
+            db.query('SELECT * FROM modalidad', function (error, results, fields) {
+                if (error) reject(error) ;
+                resolve(results);
+            })
+    
+        ));
+
     }
+
+
+
+
     async uno(id){
         const modalidadEncontrada = ModalidadBR.find(mod => mod.id === id);
         return await modalidadEncontrada;
     }
     
-    async crear(mod){
-        ModalidadBR.push({
-            id: uuidv4(),
-            Modalidad: mod,
-            catagorias: [] 
-        })
-        return await ModalidadBR;
+    crear(mod){
+
+        return new Promise ((resolve, reject) =>(
+
+            db.query('INSERT INTO modalidad SET ?', mod, function (error, results, fields) {
+                if (error) reject(error) ;
+                resolve();
+            })
+    
+        ));
+
     }
 
     async modificarCategoria(idModalidad, idCategoria, nuevoNombre) {

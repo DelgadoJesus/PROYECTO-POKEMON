@@ -1,16 +1,11 @@
-const mysql = require("promise-mysql");
-const dotenv = require("dotenv");
-dotenv.config();
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '',
+  database : 'robotdb'
+});
+ 
+connection.connect();
 
-const connection = mysql.createConnection({
-    host:process.env.host,
-    database:process.env.database,
-    user:process.env.user,
-    password:''
-})
-
-const getConnection = async ()=> await connection;
-
-module.exports = {
-    getConnection
-}
+module.exports = connection;

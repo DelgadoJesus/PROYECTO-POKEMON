@@ -13,10 +13,17 @@ router.get('/:id', async function(req, res, next) {
 });
 
 // /*POST agregar*/
+router.post('/', function(req, res, next) {
 
-router.post('/', async function(req, res, next) {
-  ModalidadControllers.crear(req.body.Modalidad)
-  res.send(await ModalidadControllers.todos());
+  //ModalidadControllers.crear(req.body.Modalidad)
+  //res.send(await ModalidadControllers.todos());
+ ModalidadControllers.crear(req.body).then(()=>{
+     console.log("then create")
+     ModalidadControllers.todos().then((resultados)=>{
+        console.log("then todos");
+        res.send(resultados)
+      })
+    })
 });
 
 

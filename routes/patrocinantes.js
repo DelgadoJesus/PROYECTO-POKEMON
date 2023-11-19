@@ -15,10 +15,19 @@ router.get('/:id', async function(req, res, next) {
 
 
 /*POST Ingresar*/
-router.post('/', async function(req, res, next) {
-    PatrocinantesController.ingresarPatrocinantes(req.body)
-    res.send(await PatrocinantesController.Patrocinantes());
-});
+router.post('/', function(req, res, next) {
+
+    //ModalidadControllers.crear(req.body.Modalidad)
+    //res.send(await ModalidadControllers.todos());
+   PatrocinantesController.ingresarPatrocinantes(req.body).then(()=>{
+       console.log("then create")
+       PatrocinantesController.Patrocinantes().then((resultados)=>{
+          console.log("then todos");
+          res.send(resultados)
+        })
+      })
+  });
+  
 
 
 module.exports = router;

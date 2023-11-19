@@ -7,8 +7,8 @@ class PatrocinantesController{
     async patrocinantesID(id){
         return await PatrocinantesModels.ObtenerPatrocinante(id);
     }
-    async ingresarPatrocinantes(patrocinante){
-        return await PatrocinantesModels.ingresarPatrocinantes(patrocinante);
+    ingresarPatrocinantes(patrocinante){
+        return PatrocinantesModels.ingresarPatrocinantes(patrocinante);
     }
 }
 

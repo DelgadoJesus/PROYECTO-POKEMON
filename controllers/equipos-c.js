@@ -7,8 +7,8 @@ class equiposControllers {
     async uno(id){
         return await equiposModels.buscarEquipoPorId(id)
     }
-    async crear(equipo, cat){
-       await equiposModels.crear(equipo, cat)
+    crear(equipo, cat){
+     equiposModels.crear(equipo, cat)
     }
     async modificar(id, nuevoNombre){
         return await equiposModels.modificar(id, nuevoNombre)

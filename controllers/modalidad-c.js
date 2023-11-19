@@ -7,8 +7,8 @@ class ModalidadControllers {
     async obtenerModalidad(id){
        return await modalidadModels.uno(id);
     }
-    async crear(mod){
-        await modalidadModels.crear(mod)
+    crear(mod){
+        modalidadModels.crear(mod)
     }
     async modificar(idModalidad, idCategoria, nuevoNombre){
         return await modalidadModels.modificarCategoria(idModalidad, idCategoria, nuevoNombre);

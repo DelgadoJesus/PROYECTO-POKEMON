@@ -14,9 +14,17 @@ router.get('/:id', async function(req, res, next) {
 
 
 /* POST crear usuario . */
-router.post('/', async function(req, res, next) {
-    equiposControllers.crear(req.body.nombre, req.body.categoria)
-    res.send(await equiposControllers.todos());
+router.post('/', function(req, res, next) {
+
+  //equiposControllers.crear(req.body.equipos)
+  //res.send(await equiposControllers.todos());
+ equiposControllers.crear(req.body).then(()=>{
+     console.log("then create")
+     equiposControllers.todos().then((resultados)=>{
+        console.log("then todos");
+        res.send(resultados)
+      })
+    })
 });
 
 /*PUT modificar*/

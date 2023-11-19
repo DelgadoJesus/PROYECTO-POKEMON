@@ -1,45 +1,39 @@
 const { v4: uuidv4 } = require('uuid');
+const db = require("../db");
 
-let equiposDB = [
-    {
-        id: "123",
-        nombre:"Equipo Delta",
-        categoria: "Modalidad Sumo"
-    },
-    {
-        id: "343",
-        nombre:"Daniel",
-        categoria: "Modalidad Sumo"   
-    },
-    {
-        id: "576",
-        nombre:"Aaron",   
-        categoria: "Modalidad Incapacidad" 
-    },
-    {
-        id: "123",
-        nombre:"Adrian",   
-        categoria: "Modalidad Incapacidad" 
-    }
-]
 
 class equiposModels {
-    async todos(){
+    todos(){
         console.log("models/todos")
-        return await equiposDB;
+
+        return new Promise ((resolve, reject) =>(
+
+            db.query('SELECT * FROM equiposdb', function (error, results, fields) {
+                if (error) reject(error) ;
+                resolve(results);
+            })
+
+         ));
+
     }
     async buscarEquipoPorId(id){
         const equiposEncontrados = equiposDB.find(equipos => equipos.id === id);
             return await equiposEncontrados
     }
 
-    async crear(equipo, cat){
-        equiposDB.push({ 
-            id:uuidv4(),
-            nombre: equipo,
-            categoria: cat
-        })
+    crear(equipo, cat){
+
+        return new Promise ((resolve, reject) =>(
+
+            db.query('INSERT INTO equiposdb SET ?', equipo, cat, function (error, results, fields) {
+                if (error) reject(error) ;
+                resolve(results);
+            })
+    
+        ));
+
     }
+
 
     async modificar(id, nuevoNombre) {    
         const equipos = equiposDB.find(equipos => equipos.id === id); 
