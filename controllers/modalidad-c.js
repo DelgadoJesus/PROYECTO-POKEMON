@@ -1,20 +1,24 @@
 var modalidadModels = require('../models/modalidad-m')
 
 class ModalidadControllers {
-    todos(){
-        return modalidadModels.todos();
+    async todos(){
+        return await modalidadModels.todos();
     }
-    obtenerModalidad(id){
-       return modalidadModels.uno(id);
+    async obtenerModalidad(id){
+       return await modalidadModels.uno(id);
     }
     crear(mod){
-        return modalidadModels.crear(mod)
+        modalidadModels.crear(mod)
     }
     modificar(idModalidad,nuevoNombre,cat){
         return  modalidadModels.modificarModalidad(idModalidad, nuevoNombre,cat);
     }
-    quitarModalidad(idModalidad){
-        return modalidadModels.eliminarModalidad(idModalidad);
+    async categoria(idModalidad, nuevaCategoria) {
+        return await modalidadModels.agregarCategoria(idModalidad, nuevaCategoria);
+    }
+
+    quitarcategoria(idModalidad){
+        return modalidadModels.eliminarCategoria(idModalidad);
     }
 }
 

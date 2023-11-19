@@ -17,15 +17,9 @@ class PatrocinantesModels {
 
     }
 
-    ObtenerPatrocinante(id){
-        return new Promise ((resolve, reject) =>(
-
-            db.query('SELECT * FROM patrocinantes WHERE id = ?', id , function (error, results, fields) {
-                if (error) reject(error) ;
-                resolve(results);
-            })
-    
-        ));
+    async ObtenerPatrocinante(id){
+        const patrocinioEncontrado = patrocinanteDB.find(patrocinante => patrocinante.id === id); 
+        return await patrocinioEncontrado;
     }
     ingresarPatrocinantes(patrocinante){
 
