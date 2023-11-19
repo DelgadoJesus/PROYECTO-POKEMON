@@ -20,7 +20,7 @@ class ModalidadModels {
 
 
 
-    async uno(id){
+    uno(id){
         return new Promise ((resolve, reject) =>(
 
             db.query('SELECT * FROM modalidad WHERE id = ?', id , function (error, results, fields) {
@@ -56,21 +56,8 @@ class ModalidadModels {
             });
         });
     }
-    
-    async agregarCategoria(idModalidad, nuevaCategoria) {
-        const modalidad = ModalidadBR.find(mod => mod.id === idModalidad);
-        if (modalidad) {
-          const nuevaCat = {
-            id: uuidv4(),
-            nombre: nuevaCategoria
-          };
-          modalidad.catagorias.push(nuevaCat);
-          return await modalidad;
-        }
-        return null; // En caso de no encontrar la modalidad
-      }
 
-      eliminarCategoria(idModalidad) {
+      eliminarModalidad(idModalidad) {
         const queryString = 'DELETE FROM modalidad WHERE id = ?';
         return new Promise((resolve, reject) => {
             db.query(queryString, [idModalidad], (error, results, fields) => {
