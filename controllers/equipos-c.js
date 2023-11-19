@@ -1,11 +1,11 @@
 var equiposModels = require('../models/equipos-m')
 
 class equiposControllers {
-    todos(){
-        return equiposModels.todos()
+    async todos(){
+        return await equiposModels.todos()
     }
-    uno(id){
-        return equiposModels.buscarEquipoPorId(id)
+    async uno(id){
+        return await equiposModels.buscarEquipoPorId(id)
     }
     crear(equipo, cat){
      equiposModels.crear(equipo, cat)
