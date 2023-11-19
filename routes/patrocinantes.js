@@ -17,8 +17,7 @@ router.get('/:id', async function(req, res, next) {
 /*POST Ingresar*/
 router.post('/', function(req, res, next) {
 
-    //ModalidadControllers.crear(req.body.Modalidad)
-    //res.send(await ModalidadControllers.todos());
+
    PatrocinantesController.ingresarPatrocinantes(req.body).then(()=>{
        console.log("then create")
        PatrocinantesController.Patrocinantes().then((resultados)=>{
@@ -28,6 +27,13 @@ router.post('/', function(req, res, next) {
       })
   });
   
-
-
+    //MODIFICAR
+    router.put('/:idPatrocinante', (req, res) => {
+      const nuevoNombre = req.body.nombre;
+      res.send(PatrocinantesController.modificar(req.params.idPatrocinante, nuevoNombre));
+    });
+    /*DELETE*/
+    router.delete('/:idPatrocinante',(req, res) => {
+      res.send(PatrocinantesController.quitarPatrocinante(req.params.idPatrocinante));
+    });
 module.exports = router;

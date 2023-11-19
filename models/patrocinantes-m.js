@@ -18,9 +18,17 @@ class PatrocinantesModels {
     }
 
     async ObtenerPatrocinante(id){
-        const patrocinioEncontrado = patrocinanteDB.find(patrocinante => patrocinante.id === id); 
-        return await patrocinioEncontrado;
+        return new Promise ((resolve, reject) =>(
+
+            db.query('SELECT * FROM patrocinantes WHERE id = ?', id , function (error, results, fields) {
+                if (error) reject(error) ;
+                resolve(results);
+            })
+    
+        ));
+
     }
+
     ingresarPatrocinantes(patrocinante){
 
         return new Promise ((resolve, reject) =>(
@@ -32,6 +40,31 @@ class PatrocinantesModels {
     
         ));
 
+    }
+
+    
+    modificarPatrocinante(idPatrocinante, nuevoNombre) {
+        return new Promise((resolve, reject) => {
+            db.query('UPDATE patrocinantes SET nombre = ? WHERE id = ?', [nuevoNombre, idPatrocinante], function (error, results, fields) {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
+    eliminarPatrocinante(idPatrocinante) {
+        const queryString = 'DELETE FROM patrocinantes WHERE id = ?';
+        return new Promise((resolve, reject) => {
+            db.query(queryString, [idPatrocinante], (error, results, fields) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
     }
 
 }
