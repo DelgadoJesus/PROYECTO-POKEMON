@@ -20,7 +20,7 @@ class PatrocinantesModels {
     async ObtenerPatrocinante(id){
         return new Promise ((resolve, reject) =>(
 
-            db.query('SELECT * FROM patrocinantes WHERE id = ?', id , function (error, results, fields) {
+            db.query('SELECT * FROM patrocinantes WHERE patrocinantes_id = ?', id , function (error, results, fields) {
                 if (error) reject(error) ;
                 resolve(results);
             })
@@ -45,7 +45,7 @@ class PatrocinantesModels {
     
     modificarPatrocinante(idPatrocinante, nuevoNombre) {
         return new Promise((resolve, reject) => {
-            db.query('UPDATE patrocinantes SET nombre = ? WHERE id = ?', [nuevoNombre, idPatrocinante], function (error, results, fields) {
+            db.query('UPDATE patrocinantes SET nombre = ? WHERE patrocinantes_id = ?', [nuevoNombre, idPatrocinante], function (error, results, fields) {
                 if (error) {
                     reject(error);
                 } else {
@@ -55,7 +55,7 @@ class PatrocinantesModels {
         });
     }
     eliminarPatrocinante(idPatrocinante) {
-        const queryString = 'DELETE FROM patrocinantes WHERE id = ?';
+        const queryString = 'DELETE FROM patrocinantes WHERE patrocinantes_id= ?';
         return new Promise((resolve, reject) => {
             db.query(queryString, [idPatrocinante], (error, results, fields) => {
                 if (error) {

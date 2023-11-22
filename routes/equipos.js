@@ -15,22 +15,15 @@ router.get('/:id', async function(req, res, next) {
 
 /* POST crear usuario . */
 router.post('/', function(req, res, next) {
-
-  //equiposControllers.crear(req.body.equipos)
-  //res.send(await equiposControllers.todos());
- equiposControllers.crear(req.body).then(()=>{
-     console.log("then create")
-     equiposControllers.todos().then((resultados)=>{
-        console.log("then todos");
-        res.send(resultados)
-      })
-    })
+  const equipo_nombre = req.body.equipo_nombre; 
+  const equipo_cat_id = req.body.equipo_cat_id;
+  res.send(equiposControllers.crear(equipo_nombre, equipo_cat_id))
 });
 
 /*PUT modificar*/
 router.put('/:id', (req, res) => {
-  const nuevoNombre = req.body.nombre;
-  const nuevaCat = req.body.categoria;
+  const nuevoNombre = req.body.equipo_nombre;
+  const nuevaCat = req.body.equipo_cat_id;
   res.send(equiposControllers.modificar(req.params.id, nuevoNombre, nuevaCat));
 });
 

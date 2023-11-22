@@ -14,29 +14,15 @@ router.get('/:id', async function(req, res, next) {
 
 // /*POST agregar*/
 router.post('/', function(req, res, next) {
-
-  //ModalidadControllers.crear(req.body.Modalidad)
-  //res.send(await ModalidadControllers.todos());
- ModalidadControllers.crear(req.body).then(()=>{
-     console.log("then create")
-     ModalidadControllers.todos()
-     .then((resultados)=>{
-        console.log("then todos");
-        res.send(resultados)
-      })
-    })
+  const modalidad = req.body.modalidad
+  res.send(ModalidadControllers.crear(modalidad))
 });
 
-
-router.post('/:id', (req, res) => {
-  const nuevaCategoria = req.body.nombre;
-  res.send(ModalidadControllers.categoria(req.params.id, nuevaCategoria));
-});
 
 /*Modificar*/
 router.put('/:idModalidad', (req, res) => {
-  const nuevoNombre = req.body.modalidad;
-  res.send(ModalidadControllers.modificar(req.params.idModalidad, nuevoNombre));
+  const modalidad = req.body.modalidad
+  res.send(ModalidadControllers.modificar(req.params.idModalidad, modalidad));
 });
 
 
