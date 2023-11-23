@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var UsuariosControllers = require('../controllers/usuarios-c')
+var UsuariosControllers = require('../controllers/usuarios-c');
+const checkLogin = require("../auth/auth");
 
 /* GET users listing. */
-router.get('/', async function(req, res, next) {
+router.get('/', checkLogin, async function(req, res, next) {
     res.send(await UsuariosControllers.todos());
 });
 
@@ -34,7 +35,7 @@ router.post('/login', function(req, res, next) {
     .catch((error)=>{
         res.send(error)
     })
-})
+});
 
 /*PUT modificar*/
 router.put('/:id', (req, res) => {
