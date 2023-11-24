@@ -8,7 +8,7 @@ class ModalidadModels {
 
         return new Promise ((resolve, reject) =>(
 
-            db.query('SELECT * FROM modalidad', function (error, results, fields) {
+            db.query('SELECT * FROM modalidades', function (error, results, fields) {
                 if (error) reject(error) ;
                 resolve(results);
             })
@@ -23,7 +23,7 @@ class ModalidadModels {
     async uno(id){
         return new Promise ((resolve, reject) =>(
 
-            db.query('SELECT * FROM modalidad WHERE id = ?', id , function (error, results, fields) {
+            db.query('SELECT * FROM modalidades WHERE modalidad_id = ?', id , function (error, results, fields) {
                 if (error) reject(error) ;
                 resolve(results);
             })
@@ -36,7 +36,7 @@ class ModalidadModels {
 
         return new Promise ((resolve, reject) =>(
 
-            db.query('INSERT INTO modalidad SET ?', mod, function (error, results, fields) {
+            db.query('INSERT INTO modalidades SET modalidad = ?', mod, function (error, results, fields) {
                 if (error) reject(error) ;
                 resolve(results);
             })
@@ -47,7 +47,7 @@ class ModalidadModels {
 
     modificarModalidad(idModalidad, nuevoNombre) {
         return new Promise((resolve, reject) => {
-            db.query('UPDATE modalidad SET modalidad = ? WHERE id = ?', [nuevoNombre, idModalidad], function (error, results, fields) {
+            db.query('UPDATE modalidades SET modalidad = ? WHERE modalidad_id = ?', [nuevoNombre, idModalidad], function (error, results, fields) {
                 if (error) {
                     reject(error);
                 } else {
@@ -71,7 +71,7 @@ class ModalidadModels {
       }
 
       eliminarCategoria(idModalidad) {
-        const queryString = 'DELETE FROM modalidad WHERE id = ?';
+        const queryString = 'DELETE FROM modalidades WHERE modalidad_id = ?';
         return new Promise((resolve, reject) => {
             db.query(queryString, [idModalidad], (error, results, fields) => {
                 if (error) {

@@ -10,6 +10,12 @@ class PatrocinantesController{
     ingresarPatrocinantes(patrocinante){
         return PatrocinantesModels.ingresarPatrocinantes(patrocinante);
     }
+    modificar(idPatrocinante,nuevoNombre){
+        return  PatrocinantesModels.modificarPatrocinante(idPatrocinante, nuevoNombre);
+    }
+    quitarPatrocinante(idPatrocinante){
+        return PatrocinantesModels.eliminarPatrocinante(idPatrocinante);
+    }
 }
 
 module.exports = new PatrocinantesController();

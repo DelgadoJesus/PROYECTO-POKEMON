@@ -1,13 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var PatrocinantesController = require('../controllers/patrocinantes-c')
+const checkLogin = require("../auth/checkLogin");
+const checkAdmin = require("../auth/checkAdmin");
 
 /* GET users listing. */
-router.get('/', async function(req, res, next) {
+router.get('/', checkAdmin, async function(req, res, next) {
     res.send(await PatrocinantesController.Patrocinantes());
 });
 
-router.get('/:id', async function(req, res, next) {
+router.get('/:id', checkAdmin, async function(req, res, next) {
     let id = req.params.id;
     res.send(await PatrocinantesController.patrocinantesID(id));
   });
@@ -15,10 +17,9 @@ router.get('/:id', async function(req, res, next) {
 
 
 /*POST Ingresar*/
-router.post('/', function(req, res, next) {
+router.post('/', checkLogin, function(req, res, next) {
 
-    //ModalidadControllers.crear(req.body.Modalidad)
-    //res.send(await ModalidadControllers.todos());
+
    PatrocinantesController.ingresarPatrocinantes(req.body).then(()=>{
        console.log("then create")
        PatrocinantesController.Patrocinantes().then((resultados)=>{
@@ -28,6 +29,13 @@ router.post('/', function(req, res, next) {
       })
   });
   
-
-
+    //MODIFICAR
+    router.put('/:idPatrocinante', checkAdmin,(req, res) => {
+      const nuevoNombre = req.body.nombre;
+      res.send(PatrocinantesController.modificar(req.params.idPatrocinante, nuevoNombre));
+    });
+    /*DELETE*/
+    router.delete('/:idPatrocinante', checkAdmin,(req, res) => {
+      res.send(PatrocinantesController.quitarPatrocinante(req.params.idPatrocinante));
+    });
 module.exports = router;
