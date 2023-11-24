@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var UsuariosControllers = require('../controllers/usuarios-c');
-const checkLogin = require("../auth/auth");
+const checkLogin = require("../auth/checkLogin");
+const checkAdmin = require("../auth/checkAdmin");
 
 /* GET users listing. */
 router.get('/', checkLogin, async function(req, res, next) {

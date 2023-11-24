@@ -68,7 +68,7 @@ class adminsModels {
                 console.log(results[0].clave_admin, usuario.clave_admin)
                 if (results) {
                     if (bcrypt.compareSync(usuario.clave_admin, results[0].clave_admin)) {
-                        var token = jwt.sign({ nombre_admin: results[0].usuario }, process.env.JWT_SECRET7);
+                        var token = jwt.sign({ nombre_admin: results[0].usuario }, process.env.JWT_SECRET_ADMIN);
                         resolve(token);
                     } else {
                         reject('Clave Errada')

@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var adminControllers = require('../controllers/admin-c');
-const checkadmin = require("../auth/auth");
+const checkAdmin = require("../auth/checkAdmin");
 
 /* GET admin listing. */
-router.get('/', checkadmin, async function(req, res, next) {
+router.get('/', checkAdmin, async function(req, res, next) {
     res.send(await adminControllers.todos());
 });
 

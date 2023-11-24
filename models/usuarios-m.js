@@ -69,7 +69,7 @@ class usuariosModels {
                 console.log(results[0].clave, usuario.clave)
                 if (results) {
                     if (bcrypt.compareSync(usuario.clave, results[0].clave)) {
-                        var token = jwt.sign({ nombre: results[0].usuario }, process.env.JWT_SECRET);
+                        var token = jwt.sign({ nombre: results[0].usuario }, process.env.JWT_SECRET_USUARIO);
                         resolve(token);
                     } else {
                         reject('Clave Errada')
