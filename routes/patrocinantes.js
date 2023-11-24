@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var PatrocinantesController = require('../controllers/patrocinantes-c')
+const checkadmin = require("../auth/auth");
 
 /* GET users listing. */
-router.get('/', async function(req, res, next) {
+router.get('/', checkadmin, async function(req, res, next) {
     res.send(await PatrocinantesController.Patrocinantes());
 });
 
-router.get('/:id', async function(req, res, next) {
+router.get('/:id', checkadmin, async function(req, res, next) {
     let id = req.params.id;
     res.send(await PatrocinantesController.patrocinantesID(id));
   });
@@ -15,7 +16,7 @@ router.get('/:id', async function(req, res, next) {
 
 
 /*POST Ingresar*/
-router.post('/', function(req, res, next) {
+router.post('/', checkadmin, function(req, res, next) {
 
 
    PatrocinantesController.ingresarPatrocinantes(req.body).then(()=>{
@@ -28,12 +29,12 @@ router.post('/', function(req, res, next) {
   });
   
     //MODIFICAR
-    router.put('/:idPatrocinante', (req, res) => {
+    router.put('/:idPatrocinante', checkadmin,(req, res) => {
       const nuevoNombre = req.body.nombre;
       res.send(PatrocinantesController.modificar(req.params.idPatrocinante, nuevoNombre));
     });
     /*DELETE*/
-    router.delete('/:idPatrocinante',(req, res) => {
+    router.delete('/:idPatrocinante', checkadmin,(req, res) => {
       res.send(PatrocinantesController.quitarPatrocinante(req.params.idPatrocinante));
     });
 module.exports = router;
