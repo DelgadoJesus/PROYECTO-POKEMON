@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var PatrocinantesController = require('../controllers/patrocinantes-c')
+const checkLogin = require("../auth/checkLogin");
 const checkAdmin = require("../auth/checkAdmin");
 
 /* GET users listing. */
@@ -16,7 +17,7 @@ router.get('/:id', checkAdmin, async function(req, res, next) {
 
 
 /*POST Ingresar*/
-router.post('/', checkAdmin, function(req, res, next) {
+router.post('/', checkLogin, function(req, res, next) {
 
 
    PatrocinantesController.ingresarPatrocinantes(req.body).then(()=>{
